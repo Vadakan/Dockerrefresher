@@ -102,7 +102,7 @@
 # So how are we going to install both these softwared ? -  This is the scenario where exactly docker comes into the picuture
 
 
-# solution to this issue:
+# solution to this issue: --  Container stores all the data and dependencies in the namespace (parition in the hard disk of server)
 # We can create segment parition in the hard disk and in one of the segment we can install python-2 and other segment we can install python-3
 
 
@@ -119,7 +119,7 @@
 # and if 'Nodejs' calls for any operations kernel will redirect the call to hard disk parition having python-3
 
 
-# Here comes the concept of 'Namespaces' and 'Control groups'. 
+# Here comes the concept of 'Namespaces' and 'Control groups'. --  Container stores all the data and dependencies in the namespace (parition in the hard disk of server)
 
 
 ![image](https://user-images.githubusercontent.com/80065996/153011151-ccf6bc0d-5c73-4310-8350-d454f39e1e06.png)
@@ -129,7 +129,7 @@
 # 'Control group' :=  it will control CPU and memory usage by process using that particular namespace so that many process can run without any deadlock
 
 
-# Structure of container :
+# Structure of container : --  Container stores all the data and dependencies in the namespace (parition in the hard disk of server)
 
 # PORTION OF HARD-DISK ALONG WITH SOME PORTION OF KERNEL ALONG WITH THE SOFTWARE PROGRAM RUNNING CALLED CONTAINER.BELOW DIAGRAMS EXPLAINS CLEARLY
 
@@ -141,6 +141,72 @@
 
 
 # HOW IMAGE WILL BE RELATED TO CONTAINERS GETTING CREATED
+
+
+![image](https://user-images.githubusercontent.com/80065996/153027809-2c1842b2-d58a-4db2-81fe-a5a9ed1d9b35.png)
+
+
+# Image contains 2 parts 
+# 1) File system snapshot (Operating system files + chrome + Python2)  
+# 2) Start up command to start chrome 
+
+
+# Image architecture
+
+
+![image](https://user-images.githubusercontent.com/80065996/153029497-9f413785-4076-4acb-9d85-b5847515cc3a.png)
+
+
+# So if we run the image, it will create a container with (operating system file system snapshot with python and chrome installed in namespace of Server's hard disk) 
+# Container will be created using startup command from the image
+# Containers are isolated environments in the namespace so one container cannot access the contents inside other container 
+
+
+# Below image shows how container's (file system snapshot (os file+python+chrome) is getting stored in namespace (parition created in hard disk of sever))
+
+
+![image](https://user-images.githubusercontent.com/80065996/153030749-fbcdf65d-1904-4749-8da6-265f8d703de5.png)
+
+
+# startup command invoked the chrome.exe file namespace of the hard disk of the server. so that chrome will start running inside the container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153031456-b737f3e9-706d-4ebb-99cd-a99139429bac.png)
+
+
+# NAMESPACE AND CONTROL GROUPS ARE SPECIFIC TO LINUX OPERATING SYSTEM. THEN HOW DOCKER WORKING ON OTHER OPERATING SYSTEM ?
+# ANSWER: LINUX VIRTUAL MACHINE WILL BE STARTED ON TOP OF OPERATING SYSTEM WE HAVE IN OUR COMPUTER SO THAT CONTAINERS WILL RUN INSIDE THE VIRTUAL MACHINE
+
+
+# HERE IS HOW DOCKER WORKS:
+
+# DOCKER FILE WILL MENTION THE OPERATING SYSTEM (FROM GOLANG:ALPINE:3.8.2). OPERATING SYSTEM WITH GOLANG INSTALLED. ALPINE IS COMPRESSED VERSION OF LINUX OS
+# WE CAN MENTION 'COPY' COMMAND TO COPY THE FILES TO THE FOLDERS IN OPERATING SYSTEM
+# USE 'RUN' CMMAND TO INSTALL ANY PACKAGE INSIDE THE FILE SYSTEM SNAPSHOT
+# ONCE FILE SYSTEM SNAPSHOT WITH ALL THE DEPENDENCIES ARE READY MENTION THE STARTUP COMMAND AT THE LAST USINF 'CMD'.
+# BUILD THIS DOCKER FILE AND CREATE THE IMAGE AND PUSH TO DOCKER HUB
+# DOCKER RUN COMMAND WILL PICK THIS IMAGE FROM DOCKER HUB. FROM THE IMAHE FILE SYSTEM SNAPSHOT WILL BE PUT INSIDE THE NAMESPACE OF SERVER'S HARDDISK WE RAN DOCKER RUN COMMAND
+# ALSO CONTAINER BODY CREATED BY TAKING PART OF HARD DISK, PART OF KERNEL. 
+# NEXT STARUP COMMAND WILL INVKE THE EXE FILE CREATED AS PART OF BUILD WHICH IS PRESENT IN FILE SYSTEM SNAPSHOT INSIDE THE CONTAINER BODY
+
+
+# Demystifying ' docker run ' command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153038254-9059a2ff-d410-40e9-bee2-cb81c85d6a50.png)
+
+
+# Docker run hello-world -- how its working - below image explains that
+
+
+![image](https://user-images.githubusercontent.com/80065996/153038629-e835b6b8-7769-4200-a8e4-aa60085c5c9e.png)
+
+
+# Overriding default startup command
+
+
+
+
 
 
 
