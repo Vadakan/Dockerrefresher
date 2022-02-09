@@ -286,4 +286,29 @@
 ![image](https://user-images.githubusercontent.com/80065996/153156192-451aa5a9-9ae7-4836-bab7-83906f0646dd.png)
 
 
+# 'Docker run == Docker create + Docker start'
+
+
+![image](https://user-images.githubusercontent.com/80065996/153192689-88ac516c-545f-48f8-8180-597aa10767c0.png)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/153192815-0dd42dc9-e467-4156-a38f-3658b3953c9e.png)
+
+
+
+# Difference between creating a container and starting a container
+
+# Creating container - copy the file system snapshot with all the dependecnies from docker image to the hard disk's namespace of the server.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153193172-dc83c014-d5b9-4f77-91d4-237e636adbf9.png)
+
+
+# starting a container - executing the startup command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153193322-cb98af59-8ee2-458a-9097-e3b117eab6fa.png)
+
+
 
