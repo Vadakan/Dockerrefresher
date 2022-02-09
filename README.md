@@ -349,3 +349,112 @@
 # Whenever you restart the stopped container, it will execute the overrided start up command if any everytime. if no overrided command, default command 
 # will be executed by default
 
+
+# 'docker system prune' - it removes 1) all stopped containers 2) all dangling images 3) unused network 4) all build cache as listed below 
+
+
+![image](https://user-images.githubusercontent.com/80065996/153237455-881e983d-39b2-470b-8897-418e63f1e97d.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153237769-649dd586-323d-476f-bb88-88b91e4be5ac.png)
+
+
+# getting logs from container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153244447-95b4cf78-2fce-4810-b1f3-2bf771d2bd0d.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153245356-f9a715bb-f23b-4fb5-b946-78a84d169aa0.png)
+
+
+# killing or Stopping docker container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153246289-1d0b352b-64ad-4b02-8373-7e7f97f7bb9f.png)
+
+
+# Stopping a docker container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153246593-45c2009b-f745-4c17-b7e0-fbdf956393fa.png)
+
+
+# Killing a docker container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153247299-db51fbcc-8f09-4840-a304-fb85007e2545.png)
+
+
+# "Docker stop" will take few time to terminate a container. it is called graceful shutdown. Since docker is written in golang we can implement this
+# "Docker kill" wont take any time. it will kill the continer very quickly
+
+
+# Example := How to install and use Redis using Docker 
+
+
+![image](https://user-images.githubusercontent.com/80065996/153249055-2d800b60-025e-4e4b-ba26-43d8ffa256e4.png)
+
+
+# Going to install both 'Redis-server' and 'Redis-client'
+
+
+# step 1: created a redis container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153250258-0459c780-2ec3-4500-bd93-c95bd3fbdf2e.png)
+
+
+# step 2: open another git bash terminal and install redis client and try to access redis-server running inside the container we just created for redis-server
+# you can see i have installed 'redis-cli' in the system instead of creating a container and installing inside of it
+
+
+![image](https://user-images.githubusercontent.com/80065996/153250796-8a50efd8-e7ba-4fda-a47c-c398c0e724b6.png)
+
+
+# But the moment you have given "redis-cli" and try to connect to "redis-server" running inside the another container, it will throw error "connection refused"
+
+
+![image](https://user-images.githubusercontent.com/80065996/153252222-d550789b-5a41-43a2-b5cf-3ed51498eef4.png)
+
+
+# Reason why we got "connection refused" error
+
+
+![image](https://user-images.githubusercontent.com/80065996/153251890-47afff24-24b5-4bf3-a0a6-0756a7d8f676.png)
+
+
+
+# we are trying to access the server running inside the container using a software installed in our server as shown in below diagram
+
+
+![image](https://user-images.githubusercontent.com/80065996/153252509-42166d67-bce2-409d-8c7d-51954779317b.png)
+
+
+
+# solution:= we have to give multiple commands like shown in below diagram to avoid this issue.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153253414-8fa116b8-9164-44f7-8073-7dec75c9eef8.png)
+
+
+# Now we can see how to issue second command to a running container. ('Docker exec' command)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/153254000-d14723bf-2f98-49f8-a08c-d4cffb525f2e.png)
+
+
+# 'Docker exec' command used to get inside of the running container and we can issue commands to avoid "connection refuse" error when we access application running inside
+# container from outside of the container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153254889-6cc207d3-851d-41e0-8f8f-03743db382ca.png)
+
+
+# now we are inside of the container and we are able to use the redis server with redis-cli as shown below
+
+
+![image](https://user-images.githubusercontent.com/80065996/153255020-9201cf0a-4c12-4fdd-b770-5dddfb8c430b.png)
+
+
