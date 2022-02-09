@@ -205,10 +205,85 @@
 # Overriding default startup command
 
 
+![image](https://user-images.githubusercontent.com/80065996/153145450-7dbd2363-72bf-4ea2-9df0-15871d772fcf.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153146835-fd9a0b35-1349-46e5-8cd4-b144595ad9fe.png)
+
+
+# we have created container from busybox image and overridded default command. busybox file system will be of linux file system so echo command works perfectly
+
+
+# first time it pulled from docker hub. now running for the second time
+
+
+![image](https://user-images.githubusercontent.com/80065996/153147810-8ee1062e-3997-4021-80a8-8b9740d41a39.png)
+
+
+# by overriding default start up command, below is the example of seeing linux file system of the container created from busybox image in the namespace(hard disk) of EC2 server i am running.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153149467-365820f9-3732-4eb5-b298-19cb6c0c809c.png)
+
+
+# busybox archotecure
+
+
+![image](https://user-images.githubusercontent.com/80065996/153150039-cdd7ffbc-c39e-41b1-a8f6-ed09af43489e.png)
+
+
+# after giving docker run command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153150329-f05cd271-cc9a-4970-a5c5-8df5789cb8db.png)
 
 
 
+# how command 'ls' and 'echo' works in busybox image. Why beacuse somewhere inside the folders of the linux file system snapshot we have the executables so once we give the 
+# name of the executables it runs perfectly. The same thing if you try in 'hello-world' image it wont work because 'hello-world' image does not have any filesystem snapshot
+# 'hello-world' image just a basic image to display some text
 
+
+# Listing all the only running containers
+
+
+![image](https://user-images.githubusercontent.com/80065996/153152873-6e7f1c7d-0ac2-48e5-891e-d63a6249d77c.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153152979-ee0e5edc-f0b3-425e-a3e1-73a795a4ac04.png)
+
+
+# In order to see running containers using 'docker ps' command container should be in running state. if a container starts and exits immediately we cannot see that 
+# container using 'docker ps' command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153154197-ceb747db-f4f4-4b28-8594-a594f04f5862.png)
+
+
+# above image you could see busybox container started and exited immediately so we could not able to see the container using 'Docker ps' command.
+# so Container needs to be in running state for sometime.
+
+# We can use 'Docker ps -a' command to see all containers in any of its lifecycle
+
+
+# just experimenting with the container and making container to run for sometime.
+
+# Make the default command of the busybox image as 'ping www.google.com' so that container will keep on pinging google so that we can keep the container in running state
+
+
+![image](https://user-images.githubusercontent.com/80065996/153155054-3b437dcd-2832-40f7-b334-74afdb2d414b.png)
+
+
+# now open another git bash terminal and issue the command 'docker ps' so that we can see container in running state
+
+
+![image](https://user-images.githubusercontent.com/80065996/153155099-4c6ac143-f77c-4f69-9054-8eaf60f15af7.png)
+
+
+# command to check containers in any state
+
+
+![image](https://user-images.githubusercontent.com/80065996/153156192-451aa5a9-9ae7-4836-bab7-83906f0646dd.png)
 
 
 
