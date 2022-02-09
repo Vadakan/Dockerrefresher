@@ -311,4 +311,41 @@
 ![image](https://user-images.githubusercontent.com/80065996/153193322-cb98af59-8ee2-458a-9097-e3b117eab6fa.png)
 
 
+# 'Docker create' command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153224485-b30f240d-9dd5-4a11-80a4-e775437ced8b.png)
+
+
+# 'Docker create' command will pull the image and copy the file system snapshot to namespace of server hard disk. 
+# we will get hash id. we can copy the hash id and then with the hash id you can issue the command 'docker run hasid'. This starts the container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153225074-8ddd0bd5-f493-472e-aa7e-ddc975258faf.png)
+
+
+# While giving 'docker run' command use flag (-a) to see the logs.
+
+
+# Restarting a stopped container. if a container is stopped it does not mean that the container is dead. we can restart the container at any point of time
+
+
+# below are two container which are in 'Exited' state.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153227563-86efb365-7168-4a9a-876a-3cc00a5d08bf.png)
+
+
+# used 'Docker start -a container_id' command to restart the stopped container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153227701-ffd32afa-0003-44d3-b8f1-487058cbe9bd.png)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/153228492-9e2e623b-846a-4280-a5ec-0b67766902e7.png)
+
+
+# Whenever you restart the stopped container, it will execute the overrided start up command if any everytime. if no overrided command, default command 
+# will be executed by default
 
