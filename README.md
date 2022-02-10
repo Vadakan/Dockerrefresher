@@ -458,3 +458,11 @@
 ![image](https://user-images.githubusercontent.com/80065996/153255020-9201cf0a-4c12-4fdd-b770-5dddfb8c430b.png)
 
 
+# The command you are typing in the terminal will come under 'STDIN'. Positive output of a request(i.e response) showing in screen is called 'STDOUT'
+# if any error occured then it will come under 'STDERR' 
+
+
+![image](https://user-images.githubusercontent.com/80065996/153428484-2b5d94dd-33b7-41e5-bf80-354db569987c.png)
+
+
+
