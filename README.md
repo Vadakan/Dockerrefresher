@@ -465,4 +465,147 @@
 ![image](https://user-images.githubusercontent.com/80065996/153428484-2b5d94dd-33b7-41e5-bf80-354db569987c.png)
 
 
+# The Purpose of "-it' flag in 'Docker exec' command
+# if you use only '-i' flag you wont see output in a nicely formatted way. "-t' flag will give output in more formatted way
+# demo:
+# started redis container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153549073-fa13d336-f397-4bf7-b23e-23b6c6473ff5.png)
+
+
+# you can see docker is waiting for input but there are no messages are anyting to indicate that we need to provide input
+
+
+![image](https://user-images.githubusercontent.com/80065996/153549324-a285cbd2-f18f-4f41-9395-bae2bc8b8fbb.png)
+
+
+# The same scenario when we use '-it' flag. we will get everything in more formatted way 
+
+
+![image](https://user-images.githubusercontent.com/80065996/153549392-7ec8f20c-1266-4334-b4bf-f3bd2c8bb8ff.png)
+
+
+# you can clearly see the difference between the two commands. '-it' flag provided some comments to indicate docker is waiting for inputs
+# This is the reason we are using '-it' flag.
+
+
+# Access terminal inside the container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153549625-735f5f0c-8d4c-4b72-8e71-cdd7503473d5.png)
+
+
+# started redis container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153549978-67bc4e61-2b83-414a-b855-a5f7c73424f6.png)
+
+
+# Open another git bash and check the running container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153550118-02cae7df-5082-4a65-8758-58c76e3cb5b1.png)
+
+
+# now with 'sh' command we can access the terminal inside the container and can execute any commands we want
+cd ~/ ==> go to home directory of the user
+cd / ==> go to root
+
+
+![image](https://user-images.githubusercontent.com/80065996/153550247-d5ebe46c-8afe-475e-b396-e7c5042a16ac.png)
+
+
+# you can access all linux feautres. This command will help us to avoid executing 'Docker exec' command multiple times to provide commands other than start up command
+
+
+# what is 'sh;
+
+
+![image](https://user-images.githubusercontent.com/80065996/153550497-c789522d-37af-4249-a7e6-b7312dfeb99f.png)
+
+
+# Usage of flag "-it" with the "docker run" command. 
+
+# What will happen when we issue  "docker run -it busybox sh" 
+
+# 1) busybox image will be downloaded from docker hub. The image will have 'file system snapshot' with 'start up command'
+# 2) file system snapshot will be copied to namespace of server we are running the docker. and an empty container will be created with part of kernel,part of namspace.
+# 3) that empty container will be ready to recieve command via STDIN
+# 4) since we have given 'sh' with '-it' flag, the defautl start up command will be overrided with 'sh' command. the empty container will run 'sh' command and open
+# the linux terminal for our work around.
+
+
+# Demonstatration
+# Running busybox image using '-it' flag
+
+
+![image](https://user-images.githubusercontent.com/80065996/153551793-4f32e8d4-1077-402a-9d71-b0a29b3250a9.png)
+
+
+# Since container is still running. we can open the another gitbash terminal and check the busybox container is runing
+
+
+![image](https://user-images.githubusercontent.com/80065996/153552007-936adbc4-06ae-4baa-a0bb-d1aeacceea7e.png)
+
+
+# DOCKER ISOLATION
+# each docker container has its own file system. Files avialble inside one container cannot be accessed by another container. we are going to check that
+
+# Step 1: Open 3 instances of gitbash terminal and connect to EC2 server
+
+# Step 2: run "docker run -it busybox sh" in two of the gitbash terminal.
+
+Terminal 1:
+
+
+![image](https://user-images.githubusercontent.com/80065996/153552948-e9171b72-7c07-400f-9b27-cfa8f18effba.png)
+
+
+Terminal 2:
+
+
+![image](https://user-images.githubusercontent.com/80065996/153552979-2268f67b-6962-4cdd-824b-e592d401d7a5.png)
+
+
+# Step 3: Open the third gitbash instance check 'docker ps' you could see 2 docker container of busybox is running shell temrinal
+
+
+![image](https://user-images.githubusercontent.com/80065996/153553124-6d503413-b76b-41d1-9a4c-8799e9134ca7.png)
+
+
+# step 4: Open the first gitbash terminal and create a new file using 'touch' command in the first container 
+
+
+![image](https://user-images.githubusercontent.com/80065996/153553478-7c6f1962-3e2a-4785-b7b8-8ccb4609171c.png)
+
+
+# step 5: open the second gitbash terminal. type 'ls' in the second container. you will not see the file 'file1.txt' in second container
+# Even though containers are created in same harddisk, namespace concept will give isolation to file system of each container so that file created
+# in one container will not be seen in another container.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153553714-a29b6884-4161-4792-90f4-a3b16c9f13b5.png)
+
+
+# created a file in second container (file2.txt)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153553761-2b1e65f1-0073-40c6-8237-7e38f04e3a14.png)
+
+
+# checking for the file (file2.txt) in the first container. it will not be present. Going to first gitbash terminal and type 'ls'
+
+
+![image](https://user-images.githubusercontent.com/80065996/153553848-f2da5def-6f2f-4c53-ade2-04795e33672a.png)
+
+
+# 'file2.txt' is not present as shown in above diagram. This hence proves continer will have isolation and we cannot share the filesystem
+
+
+
+
+
+
+
 
