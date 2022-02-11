@@ -615,7 +615,64 @@ Terminal 2:
 ![image](https://user-images.githubusercontent.com/80065996/153564468-65c32b2e-e199-44fc-8b3b-afd352c9f49a.png)
 
 
+# Follow below steps
+
+mkdir redis-image
+cd redis-image
+touch Dockerfile
+nano Dokerfile
+
+===================
+
+**Dockerfile:
+
+# Use existing Docker image as the base 
+
+FROM alpine
+
+# Download and install Dependency
+
+RUN apk add --update redis
+
+# Tell the image what to do when empty container is started
+
+CMD ["redis-server"]
 
 
+![image](https://user-images.githubusercontent.com/80065996/153609054-635a34ad-78ff-4cd4-9f8a-3ab94b1697fb.png)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/153608952-5883696f-aa1c-49d6-abf9-2771d8247897.png)
+
+
+Building the Dockerfile created using below command
+
+# Docker build -t name_of_the_image:Version_tag .   (Dont forgot the last dot)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153609475-20ba47c7-6d62-4aa8-84c0-58ae8ebd0c1d.png)
+
+
+# you could see image created from the Dockerfile
+
+
+![image](https://user-images.githubusercontent.com/80065996/153609606-938f0c6c-8776-4697-af33-5ab6f4d2dd50.png)
+
+
+# using image id we have to create the container using 'Docker run' command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153610381-6f97c423-edf6-4528-bce7-0081d78cbca8.png)
+
+
+# container created
+
+
+![image](https://user-images.githubusercontent.com/80065996/153610438-6c962fbb-b3ac-42c9-b5a4-d2a16df2abdb.png)
+
+
+# what happened here -- > File system snapshot (alpine + Apt get update command's result) copied to namespace of EC2 server and empty container has started.
+# after that start up command will be executed as we mentioned using 'CMD' in Dockerfile
 
 
