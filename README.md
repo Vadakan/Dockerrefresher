@@ -603,6 +603,16 @@ Terminal 2:
 # 'file2.txt' is not present as shown in above diagram. This hence proves continer will have isolation and we cannot share the filesystem
 
 
+# Creating our own custom Docker image and use it for our purpose
+
+
+![image](https://user-images.githubusercontent.com/80065996/153563964-0c55ced3-2293-41e2-9135-9305a77e69b6.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153564241-289c37c4-02ad-4418-b9ef-ed6d2351969c.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153564468-65c32b2e-e199-44fc-8b3b-afd352c9f49a.png)
 
 
 
