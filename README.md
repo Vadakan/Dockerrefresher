@@ -759,5 +759,7 @@ Building the Dockerfile created using below command
 ![image](https://user-images.githubusercontent.com/80065996/153632221-2504a6f6-2cb3-4d8b-8fa5-ceee6cb0db5b.png)
 
 
-# Step 6:Image will be created from the intermediate container and intermedicte container will be deleted.
+# Step 6:Image will be created from the intermediate container and intermedicte container will be deleted as shown below
 
+
+![image](https://user-images.githubusercontent.com/80065996/153633576-28d78703-e39c-4b42-9c6b-2ec8e2103a77.png)
