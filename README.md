@@ -676,3 +676,88 @@ Building the Dockerfile created using below command
 # after that start up command will be executed as we mentioned using 'CMD' in Dockerfile
 
 
+# Same image running without '-it' flag. Container with redis sever has started
+
+
+![image](https://user-images.githubusercontent.com/80065996/153615611-4fba5964-74fa-413d-bcd4-1933021281d5.png)
+
+
+# Details on Docker file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153616025-28d29926-145d-449c-875a-eeed53f3c5a8.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153622947-735649ac-8108-4783-8a9e-20e65d5577cd.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153623009-a7fd8284-1aa2-4ab9-ace9-6e5765f9da45.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153623305-c51f94f4-fc29-4f6c-88c9-cf06d7537215.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153623481-cc1e8a32-0548-437a-b559-3c98465b07d3.png)
+
+
+# Total count of commands will be calculated by docker. so each step runs it will show as "step number/ Total step counts" as shown below
+
+
+![image](https://user-images.githubusercontent.com/80065996/153625838-ec1cbce0-a00e-4e40-9647-51e19887bbe7.png)
+
+
+# Intermediate container concept
+
+
+![image](https://user-images.githubusercontent.com/80065996/153627033-6cdd23eb-ce8f-45d9-b7e5-6c1dd9700ba8.png)
+
+
+# Steps of what is happening when we create a image using 'Docker build' command in our Dockerfile - Behind the scene process
+
+
+# Step 1: Basic set up at the beginning
+
+
+![image](https://user-images.githubusercontent.com/80065996/153627460-2340054c-4043-45f7-a776-bd55e59c2c86.png)
+
+
+# Step 2: First statement 'From:alpine' will take file system snapshot into the namespace of EC2 server and empty container will be started
+# and then second statement 'RUN' will get executed as 'running process' in container. The container started here is the intermediate container. for each step, 
+# previous step will be referred and then intermediate container will be created. After the process is completed intermediate container will be deleted.
+# WHEN INTERMEDIATE CONTAINER DELETED, WHATEVER STEPS EXECUTED TILL NOW WILL BE TAKEN AS NEW FILE SYSTEM SNAPSHOT SO THAT WHEN NEXT STEP RUNS IT WILL TAKE THIS LATEST
+# FILE SYSTEM SNAPSHOT AND PROCESS IT.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153628090-10df3890-8f50-4360-b0f2-d81a5d4ad1c6.png)
+
+
+
+# STEP3: YOU CAN SEE UPDATED IMAGE BELOW. INITIAL ALPINE FILE SYSTEM SNAPSHOT + RESULTS OF 'RUN' COMMAND (INSTALLED DEFAULT PACKAGES ALONG WITH 'REDIS')
+
+# updated image highlighted below as result of immediate container (Container id -- below provided is sample, you can replace it as per your example)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153630832-5b6cf4c5-29ad-40b9-98a9-7ddcac8e5aa2.png)
+
+
+# REDIS in installed as highlighted below as part of updated file system snapshot
+
+
+![image](https://user-images.githubusercontent.com/80065996/153631004-e34e812f-101a-409d-85c6-0af136b94b6f.png)
+
+
+# STEP 4:  container got refreshed and ready for next instruction (Intermediate container deleted)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153631376-3ffb9e64-1d90-4fb2-bbe3-7e42ff474200.png)
+
+
+# Step 5: When step 3 ( CMD) executes, it will take file system snapshot from previous step, and then starts new container and executed the commands (CMD)
+# 'CMD' has argument has 'start redis' command. since 'redis' is installed into file system snapshot as part of previous step, it will works fine now in the third step
+
+
+![image](https://user-images.githubusercontent.com/80065996/153632221-2504a6f6-2cb3-4d8b-8fa5-ceee6cb0db5b.png)
+
+
+# Step 6:Image will be created from the intermediate container and intermedicte container will be deleted.
+
