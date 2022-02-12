@@ -763,3 +763,98 @@ Building the Dockerfile created using below command
 
 
 ![image](https://user-images.githubusercontent.com/80065996/153633576-28d78703-e39c-4b42-9c6b-2ec8e2103a77.png)
+
+
+# Recap of Docker image build process:
+
+
+![image](https://user-images.githubusercontent.com/80065996/153704261-5a1bd125-8e89-40e7-9520-82326098938c.png)
+
+
+# continution of above diagram
+
+
+![image](https://user-images.githubusercontent.com/80065996/153704313-bc55735a-16a3-48f8-9476-8999b2d22063.png)
+
+
+# REBUILD WITH CACHE - Concept
+
+
+![image](https://user-images.githubusercontent.com/80065996/153704432-43702fe5-cb82-4ad7-9bed-1f1c1224c5c8.png)
+
+
+# Adding new line in the middle of Dockerfile we have created.
+
+# Earlier one
+
+
+![image](https://user-images.githubusercontent.com/80065996/153704775-953b34eb-b201-4693-94d8-de9e387027a6.png)
+
+
+# Changed one
+
+
+![image](https://user-images.githubusercontent.com/80065996/153704844-8af27b61-8cd4-46f9-b3af-cbc5ff8cfa05.png)
+
+
+# Since we added new step (step 3) to install gcc, Docker will create new intermediate container and take the snapshot. 
+# the intermediate image created as part of first 2 steps will be presented in Docker Build cache. So by looking at the Dockerfile, Docker is very intelligent
+# enough to identify the build cache and resue the same image. That is the reason Docker is so fast. 
+# From this we know that any change in the middle of Docker file will create a new intermeidate image as part of build cache.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705055-6de7c9c5-2de9-4094-b05c-574770b88743.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705160-1f7825de-8562-425d-8ace-4f865c941463.png)
+
+
+# running docker build again to see all the steps are used from Build cache. Because we dont have any change in the Dockerfilr
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705230-c2463f37-8672-45fa-aa3d-5d387cb0ca3f.png)
+
+
+# image created - which has 'File system snaphot along with start up command from 'CMD'
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705271-d69aed65-cc36-4e7f-841e-635908abc6cc.png)
+
+
+# Concept := CHANGING THE ORDER OF STEPS IN DOCERFILE. 
+# whenever you change the order of steps in Dockerfile, the build cache will not be used by docker. because build cache memory will be remembered based on order of steps
+# Docker executed the file. So any change in the order or the steps in Dockerfile, Docker will donwload build from the beginning it will not use cache.
+# Example := changing the order
+
+
+# Docker file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705525-a7d2acce-215b-439f-ae47-94552b8d6ea0.png)
+
+
+# Using Cache
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705514-cdd4c849-f58e-4913-be7c-abc6f968bd0b.png)
+
+
+# Swap the Step 2 and Step 3 in the Dockerfile
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705622-1b291357-0a2f-41cd-8ea9-31d4b0907ce2.png)
+
+
+# After swapping building the Dockerfile to create the image
+# you could see from step 2 everyting runs freshly as if it is runing for the first time because it is not using build cache since order is changed
+# last time when we build it, (alpine followed by redis installation will be remembered by docker and filesystem snapshot will be present in build cache)
+# since we have changed order build cache will not be available
+
+
+![image](https://user-images.githubusercontent.com/80065996/153705660-e60713b6-c337-4614-89c7-0a6e9f2bd741.png)
+
+
+# CONCEPT - TAGGING THE IMAGE
+
+
+
