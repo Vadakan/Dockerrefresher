@@ -857,4 +857,49 @@ Building the Dockerfile created using below command
 # CONCEPT - TAGGING THE IMAGE
 
 
+![image](https://user-images.githubusercontent.com/80065996/153719273-fcd02f68-0d48-4039-b009-8f448deea879.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153719331-aacf215f-a767-4ede-b101-f325669df22d.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153720122-9155412f-b612-497e-b5f1-79927cf45cd2.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153720172-85dbade0-fb19-483c-89c7-555dfa3ea67e.png)
+
+
+# Instead of starting the container using container id, we can use 'name of the image'. That is the main reason we are use 'tag' to provide name to the image
+
+
+![image](https://user-images.githubusercontent.com/80065996/153720264-ae2900be-6b2c-4233-951c-ae6d2dcd5779.png)
+
+
+# we have to provide the name in below format while using docker image we just tagged
+
+
+# docker run name_of_docker_hub_profile/repo_name or project_name:version_name
+# Example as per above image : "docker run sundar/redis:v1"
+
+
+# Project in Docker 
+# Project Outline
+
+
+![image](https://user-images.githubusercontent.com/80065996/153720971-64f341cd-e8fa-49a2-aeb4-b60af7358e52.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153721017-62b833da-8f52-490f-a45f-0565019845fa.png)
+
+
+# Create a directory called 'simpleWeb' and enter into that directory using 'CD' command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153721716-0ae6ab1c-9b66-40c6-a797-f8ee120c42fd.png)
+
+
+# Create a file called 'package.json' and give the details. This file is equivalent to 'go.Mod' file in Golang
+
+
+![image](https://user-images.githubusercontent.com/80065996/153721966-e9287dec-2799-49fe-bd7b-64d8dc1130a0.png)
 
