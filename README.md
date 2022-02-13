@@ -1030,11 +1030,46 @@ Building the Dockerfile created using below command
 
 
 
+![image](https://user-images.githubusercontent.com/80065996/153757556-1df271d8-a106-4581-bf47-beb77c4746c0.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153757622-a271cf7e-173d-40ca-b663-7d13ee3d9126.png)
 
 
 
+![image](https://user-images.githubusercontent.com/80065996/153757930-81f0cca0-4e62-4552-babd-8e1c68bf645f.png)
 
 
+![image](https://user-images.githubusercontent.com/80065996/153758169-a1eb2526-8498-4356-82ae-65b3a3026d44.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153758187-98da1521-ede7-4a22-9e57-7c472222d9d2.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153758219-55d8d4c9-2574-47df-aff5-0b62cf134e50.png)
+
+
+# We are starting a container from the image we created and tagged with version 'v2'. our node app is listening on port '8080'. we can provide any port as
+# first parameter and then second parameter of port number will be the one we mentioned inside the app (index.js file) to listen to.
+
+
+# you can copy public ip address along with port number 8080 to see the app running inside the container
+
+
+![image](https://user-images.githubusercontent.com/80065996/153758615-bbfc7b2f-d207-4622-bcdd-1452dd9f8929.png)
+
+
+# First paramater of port number, we can give any number we want. But the second parameter of the port number is something we have to give the port number 
+# which is mentioned inside the app or else it will be wrong. the app inside the container we cannot access it
+
+
+![image](https://user-images.githubusercontent.com/80065996/153758906-6e8d87c2-f5bd-4dcc-b942-6750e24d2e2e.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153758979-e0438444-2278-49f0-84a2-353e9b17d168.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153758999-ea178f8e-471e-4443-8dde-614ea41c28b8.png)
 
 
 
