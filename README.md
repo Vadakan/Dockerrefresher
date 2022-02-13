@@ -903,3 +903,140 @@ Building the Dockerfile created using below command
 
 ![image](https://user-images.githubusercontent.com/80065996/153721966-e9287dec-2799-49fe-bd7b-64d8dc1130a0.png)
 
+
+![image](https://user-images.githubusercontent.com/80065996/153743657-1dc2c975-2ee8-4e8c-91ad-1537ce3b1d92.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153744083-02e6f18b-1e25-446c-8c75-604fd1178114.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153744717-cb0f7951-1523-41b3-811d-f92677b5fcd6.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153744736-9279d028-5bd2-4d55-be27-8c4d39c32052.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153744742-e16bd70c-1011-47ae-bf8e-0395dd7950ff.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153744749-89722558-143d-44ec-93c5-4f85432c40ac.png)
+
+
+# when we try to build the dockerfile, we immediately getting error as shown below,
+
+
+![image](https://user-images.githubusercontent.com/80065996/153744941-68a6696b-6878-4f6a-b6a3-f15ddb998719.png)
+
+
+# Why error is occured when we try to build the Dockefile above ?
+
+# BASE IMAGE ISSUES
+**in the step2, "RUN npm install" command, as part of first step file sustem
+
+
+![image](https://user-images.githubusercontent.com/80065996/153745305-659ab90e-8d21-4514-86e9-77b2b0163eb9.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153745357-08868248-628e-4ff9-b5ff-a036d27ad454.png)
+
+
+# Alpine Operating system is very small. so it will not have much package manager installed. (Only 'apk' package manager will be installed by default)
+# We have to install 'npm' package manager in order to use run the 'node js' applications
+# We have 2 options to solve this issue,
+# 1) we can use other image with 'npm' package manager installed already in it
+# 2) or else we can build our own image by intalling 'npm' package manager on our own.
+
+# for this demo, we are going to use other image which has 'npm' installed already.
+# In 'Docker hub' we can see some images which has 'operating system with node package manager' installed already. we can take this and use it.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153745753-ade9f8b7-c943-4bd2-b358-50e7d8c600ac.png)
+
+
+# similary packages will be available for all programming languages. Similar image for Golang,
+
+
+![image](https://user-images.githubusercontent.com/80065996/153745844-ef5a19ef-5336-4631-83f3-630b4ba955a4.png)
+
+
+# We can refer Dockerfile versions in the same page where we find the image
+
+
+![image](https://user-images.githubusercontent.com/80065996/153745913-e693d2d0-1daa-4a9d-a395-03d2f576cae1.png)
+
+
+# we can use any of this version along with name of the image in the dockerfile
+# click the version tag(bwlo highlighted) to see usage of Dockerfile
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746001-16014977-6b83-4b26-831e-64c9f745de73.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746011-4b4182ac-90d1-407e-9da0-eeedcb9af742.png)
+
+
+# Given the similar construct in docker file. I am going to use 6.14 version
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746068-bf297f66-39d6-48fe-9b2a-bd3fc1dab1aa.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746174-5257579e-840b-4818-b7f7-a4a50410f79a.png)
+
+
+# Image crateted,
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746186-c439dfbe-260a-477c-9a39-fc5189a8caf2.png)
+
+
+# Quick note: While creating image on our own by building docker file, startup command will be decided in the last step using 'CMD' option. so once all the steps run
+# Docker image will be created with file system snapshot along with startup command at the end of all steps completed from Dockerfile using 'docker build' command
+# but when we use image already present in docker hub, that means it already has file system snapshot along with start up command by default.
+
+
+# there will be alpine version for every image present in Dockerub, instead of versin 6.14 of 'node' image we can use alpine version of same 'node' image which reduces
+# final size of the image created.
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746568-99560856-ef0c-4b0d-9e74-5d8f5351a55c.png)
+
+
+# Always refer the usage of alpine from Dockerhub before using it
+# sometime we get 'ideal tree' error when using alpine image as show below while building Dockerfile
+# mention the workdir and copy the package.json file to workdir to avoid this issue
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746751-05321e2d-cfde-4d96-b223-39386403b72f.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746785-14631f03-3608-41dc-8f70-25fe2931bb5d.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746903-84cee01f-5baf-4fda-9d9d-940c61d33e38.png)
+
+
+# updated Dockerfile to solve this issue
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746927-1f4f8ebe-e886-4457-a08e-3fe6ca78fcd1.png)
+
+
+# You can compare the size of two docker images crated below, version v1 is created using regular OS image which is very large
+# version 'v2' created with alpine image which is very less in size
+
+
+![image](https://user-images.githubusercontent.com/80065996/153746962-a38d3223-6846-4c2b-9f98-d41fdd510388.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
