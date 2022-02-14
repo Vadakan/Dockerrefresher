@@ -1244,3 +1244,43 @@ Building the Dockerfile created using below command
 
 ![image](https://user-images.githubusercontent.com/80065996/153886267-7cdf2b0d-d7cf-4c3d-a6ec-7dd48b8863be.png)
 
+
+# We are going to create a new folder 'visits' for this demo
+# inside the 'visits' folder, create 'package.json' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153901532-4864f508-bfdc-4786-b1a8-c43d4ecb5e01.png)
+
+
+# contents of 'package.json' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153908851-e62c9099-bfa1-45b3-8b5f-350c9395f80c.png)
+
+
+
+# contents of 'index.js' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153905213-7c13dad7-34b4-4fe4-9e6f-223f430a4ac4.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153905275-2d4ba88f-774c-459f-a0c8-16ba8a9710a1.png)
+
+
+# Create a dockerfile with contents
+
+
+![image](https://user-images.githubusercontent.com/80065996/153907550-85c6e261-2bdc-4e75-a7a9-12bce5e41071.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153907679-0e470311-10ce-497a-ab25-d0a9649121ec.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153909636-395c1bc1-f3bd-461f-8b31-b65680414830.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153909920-4f0667fc-1108-447d-b3a2-d5eb4a167c51.png)
+
+
+
