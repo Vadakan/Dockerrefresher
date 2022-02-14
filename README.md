@@ -1214,4 +1214,33 @@ Building the Dockerfile created using below command
 ![image](https://user-images.githubusercontent.com/80065996/153840477-fec537ee-c473-4d5e-b064-e890948ea35e.png)
 
 
+# DOCKER COMPOSE WITH MULTIPLE LOCAL CONTAINERS
+# APP OVERVIEW WE ARE GOING TO BUILD - we are going to build an app which counts number of visits to the website
+
+
+![image](https://user-images.githubusercontent.com/80065996/153882213-6469a39b-f948-47a1-91d3-ed3b929dd2e6.png)
+
+
+# we are having container with 'node js' app running inside of it which servers our request in port 8080. We are going to use 'Redis' service to store the visit count
+
+# ONE CONTAINER CAN RUN MULTIPLE APP INSIDE BUT THIS KIND OF DESIGN IS NOT ADVISABLE.
+# IT IS BETTER TO ALWAYS USE ONE APP RUNNING INSIDE ONE CONTAINER. THAT WILL BE A VERY GOOD APPROACH
+
+
+# NOT ADVISABLE APPROACH
+
+
+![image](https://user-images.githubusercontent.com/80065996/153885869-13acccfe-9132-4264-859c-ce0a53d8c404.png)
+
+
+# GOOD APPROACH
+
+
+![image](https://user-images.githubusercontent.com/80065996/153886203-2d6f3d88-af37-4e58-9cb5-4720e5a8f5ac.png)
+
+
+# SIMPLE APPROACH
+
+
+![image](https://user-images.githubusercontent.com/80065996/153886267-7cdf2b0d-d7cf-4c3d-a6ec-7dd48b8863be.png)
 
