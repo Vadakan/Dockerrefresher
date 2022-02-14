@@ -1072,6 +1072,146 @@ Building the Dockerfile created using below command
 ![image](https://user-images.githubusercontent.com/80065996/153758999-ea178f8e-471e-4443-8dde-614ea41c28b8.png)
 
 
+# Demo := What will happen is there any change in 'index.js' file ? (i.e. Some code fix we have done)
+
+
+# Node app is running on port 8080. From outside we are exposing it on port '8090' as given in the 'docker run' command
+
+
+![image](https://user-images.githubusercontent.com/80065996/153822443-66c34cdc-f7f2-4674-be3b-9f9eaff2db83.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153822975-3b54ab60-b159-4ff9-a8b0-84b737fc24a3.png)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/153822623-0f8d9387-355f-448c-aa19-0b345ea812fa.png)
+
+
+# We are going to change the display statment of 'hi there' to 'bye there' in 'index.js' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153823105-b0b35ba1-40a6-483b-ae9e-b1e3951d1400.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153823057-45b50e02-63b4-4c68-a156-fba7870659ff.png)
+
+
+# now go and refresh the browser, you will still see the old message. New message is not updated in the browser
+
+
+![image](https://user-images.githubusercontent.com/80065996/153823211-b0d177a5-4361-470e-9a4b-4df7d697829d.png)
+
+
+# Because, when we created the image, the file system snapshot still contains old code copied into that as specified in the dockerfile using 'Copy' command.
+# so we have to create a new image along with new code changes to see the updated code changed reflected in the container and the browser 
+
+
+# we rebuilt the dockerfile with same image tag (sundar/nanoapp:v2) and create the image with updated code changes in index.js
+# NOTE: SINCE WE HAVE DONE A SMALL CHANGE IN 'INDEX.JS' FILE, DOCKER IS CLEVER ENOUGH TO INDENTIFY THE CHANGES AND FROM THE 'COPY' STEP EVERYTHING RUN AS NEW STEP
+# INSTEAD OF USING 'BUILD CACHE' AS SHOWN BELOW
+
+
+![image](https://user-images.githubusercontent.com/80065996/153824087-d09e9cb4-4d11-4678-ab0c-31495f0e69c1.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153824810-b886bd8d-6faa-4fb4-9586-5e135fb898b8.png)
+
+
+# starting the container with new changes
+
+
+![image](https://user-images.githubusercontent.com/80065996/153824998-56387c1a-bd85-4dc2-8d02-90cf5587790f.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153825043-a1e1fd43-6cba-4388-b513-6813b6f60bfa.png)
+
+
+# Result: Changed message displayed here
+
+
+![image](https://user-images.githubusercontent.com/80065996/153825091-a5f5ac7f-56b5-484e-ae07-3dc7fd210d60.png)
+
+
+# AVOIDING UNNECESSARY REBUILD AND AVOID CACHE BUSTING
+# As we see in the previous demo, we have done only a small change in 'index.js' file. Since the 'COPY' step is just before dependency installation step (RUN npm install),
+# the change is detected by docker and rebuild started. This is not a good design, for a small change we should not rebuild the image with the complete dependency
+
+# SOLUTION: We are changing the dockerfile slightly to accomodate like below
+
+
+# Old docker file:- we are going to split the 'COPY' step into 2 steps
+
+
+![image](https://user-images.githubusercontent.com/80065996/153830268-51e9838c-749d-4a51-bb85-317a33e6d01a.png)
+
+
+# NEW UPDATED FILE BELOW : now only package.json will be copied before 'RUN npm install' step. Project files will be copied via newly created 'COPY' step after
+# 'RUN npm install' step. So if any change in code in project file (for ex: 'index.js'), Rebuild will not happen
+
+
+![image](https://user-images.githubusercontent.com/80065996/153830931-a95e576a-0aa2-43a6-a0be-816b10b0f5d6.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153832290-bc481fcb-641e-4bc1-8a53-c0e135be4164.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153832376-22665a02-f9f4-45d1-9d44-0625fd5d7c5c.png)
+
+
+# starting a container out of image we created
+
+
+![image](https://user-images.githubusercontent.com/80065996/153832638-ad166f15-bc28-4c32-a76c-0f86f96334d8.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153832722-15e6694b-7ef4-47eb-a28e-3bd8c2290b0a.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/153832768-6dee6d03-5bec-497f-9ada-1629072db14e.png)
+
+
+# now changing the display message to anything random message in 'index.js' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/153833571-a85ac6db-33c3-46ab-ba30-c0e2c08b7f9f.png)
+
+
+# Rebuilding the dockerfile. if we rebuild the docker file with '-t' (tag) flag without any version, it will take 'latest' by default as shown below
+
+
+![image](https://user-images.githubusercontent.com/80065996/153834468-c6e8ef0a-bbb9-464c-abd7-56de2d96bab5.png)
+
+
+# you could observe, only the COPY step of project files rebuilt newly since we have changes in the 'index.js' file. we have avoided rebuild of installing
+# the dependencies by this change
+
+# starting the container from the image
+
+
+![image](https://user-images.githubusercontent.com/80065996/153834993-2c74a6e0-1371-4a04-aca5-f03ace38440e.png)
+
+
+# New changes picked. The learning in this demo is - how to avoid rebuild of depenedencies by a slight change in dockerfile
+
+
+# Result:
+
+
+![image](https://user-images.githubusercontent.com/80065996/153835156-658db55e-fec2-4760-a14f-6620834e95d3.png)
+
+
+# Rebuilding the Dockerfile with no change in anything either in project files.we can mention the tag without any version so that it will rebuild the 
+# dckerfile with 'latest' tag itself
+
+
+![image](https://user-images.githubusercontent.com/80065996/153840026-a02e72e5-c7aa-4490-a045-fdcdd81598b5.png)
+
+
+# rebuilt the Dockerfile successfully
+
+
+![image](https://user-images.githubusercontent.com/80065996/153840477-fec537ee-c473-4d5e-b064-e890948ea35e.png)
 
 
 
