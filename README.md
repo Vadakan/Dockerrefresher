@@ -1305,4 +1305,47 @@ Building the Dockerfile created using below command
 # Option 1) We can use Docker Cli - using command line but it is very tedious process
 # Option 2) We can use Docker-compose to introduce network
 
+# WE ARE GOING TO USE DOCKER-COMPOSE
 
+
+![image](https://user-images.githubusercontent.com/80065996/154492746-cb6ef3cb-d854-419f-8838-0c07560fa222.png)
+
+
+# Docker-compose is the CLI tool. SO WE HAVE TO INSTALL SEPARATELY IN OUR SERVER.
+# CONTAINERS CREATED WITH DOCKER-COMPOSE WILL BE CONNECTED TOGETHER BY SOME FORM OF NETWORKING. THIS WILL HAPPEN BEHIND THE SCENES 
+
+# ADVANTAGE:
+# 1) DOCKER-COMPOSE IS NOTIHING BUT DOCKER COMMANDS COMBINED TOGETHER SO THAT WE CAN AVOID DOING MULTIPLE STEP
+# 2) NETWORKING WILL BE CREATED BY DEFAULT BEHIND THE SCENES FOR THE CONTAINERS CREATED BY USING DOCKER-COMPOSE
+
+
+![image](https://user-images.githubusercontent.com/80065996/154498291-01fb7eac-10ae-4bc0-8bc8-dad7621e76da.png)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/154495024-22eee74e-43ca-492e-930b-2ce39c4c1e09.png)
+
+
+# After using Docker-compose. you can see from below diagram some way of communiation will happen due to network created by default
+
+
+![image](https://user-images.githubusercontent.com/80065996/154500734-631f4d98-8065-4bb9-8c8c-62e6cdee4773.png)
+
+
+# Demo:- we are already having a folder called 'visits' which is having :=  1) Dockefile 2) index.js 3) package.json   files which for building node js app
+# so we are creating a docker-compose file in this same folder. Docker-compose file is having two services. First service is the 'Redis' which is using 'redis' image from
+# Docker hub. second service is the 'node js' service which will be used from Dockerfile we are having in this folder
+
+# files available in 'visits' folder
+
+
+![image](https://user-images.githubusercontent.com/80065996/154510008-023943c6-6631-4126-9bbc-9e0f0de4e41c.png)
+
+
+# create a 'docker-compose' file in this folder
+
+
+![image](https://user-images.githubusercontent.com/80065996/154510377-03f59c76-78c4-4a7c-aa11-6774cf3f5c0d.png)
+
+
+# 
