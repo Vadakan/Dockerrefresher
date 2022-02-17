@@ -1283,4 +1283,26 @@ Building the Dockerfile created using below command
 ![image](https://user-images.githubusercontent.com/80065996/153909920-4f0667fc-1108-447d-b3a2-d5eb4a167c51.png)
 
 
+# DOCKER COMPOSE
+# in your computer, we have 2 containers running, 1 container is webapp and other container is redis database container. how both containers communicate with each other
+
+
+![image](https://user-images.githubusercontent.com/80065996/154486482-76c3333b-19e1-40fc-afbd-aa30fb2d687c.png)
+
+
+# by default both isolated containers will not communicate with each other unless we introduce a mechanishm to create a communication
+
+
+![image](https://user-images.githubusercontent.com/80065996/154486934-210cd375-a919-4808-b320-33640eea1173.png)
+
+
+# We can have 2 options to introduce a communication amonng two containers. 
+
+
+![image](https://user-images.githubusercontent.com/80065996/154487422-4a16eb09-b419-47f7-835f-38f7d2782851.png)
+
+
+# Option 1) We can use Docker Cli - using command line but it is very tedious process
+# Option 2) We can use Docker-compose to introduce network
+
 
