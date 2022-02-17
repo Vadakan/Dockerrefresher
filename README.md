@@ -1348,4 +1348,111 @@ Building the Dockerfile created using below command
 ![image](https://user-images.githubusercontent.com/80065996/154510377-03f59c76-78c4-4a7c-aa11-6774cf3f5c0d.png)
 
 
-# 
+# Docker-compose.yaml contents
+
+
+![image](https://user-images.githubusercontent.com/80065996/154517858-38a80509-c494-4de3-9d9e-89780e280a39.png)
+
+
+# 'node js' file contents. In tradition approach for two containers to communicate, we have to use the 'URL' as i highlighted below
+
+
+![image](https://user-images.githubusercontent.com/80065996/154519784-9024b1fa-ed0c-49e3-9b8c-555e3ad9d619.png)
+
+
+# But in Docker-compose, we need not to use any URL to communicate between one container with other container. We can just use the 'service name' we are mentioning
+# in docker compose file to communictae
+
+# below highlighted is the 'service name', we can simply use this 'service name' to communicate with this database container from the other container which is running
+# 'node js' web app
+
+
+![image](https://user-images.githubusercontent.com/80065996/154520322-3721d43a-9df5-44f7-8712-edc60c6e3c3e.png)
+
+
+# contents of 'index.js' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/154521661-469679cd-9d1f-4a85-a45c-eed400daef64.png)
+
+
+# Relating the 'index.js' to golang code. 
+
+# this index.js is having code to start server and listen the server to port 8090 - we can do the same code in golang using gorilla mux in main.go
+# connecting to database is also present in same code. in golang we can assume we are having connection string inside any of the handler functions.
+# connection string we can just use the 'service name' mentioned in docker compose file instead of whole URL we used to have similarly in golang code
+
+
+![image](https://user-images.githubusercontent.com/80065996/154521898-60b862d1-f947-42f3-baf3-f5642e9e8a13.png)
+
+
+
+![image](https://user-images.githubusercontent.com/80065996/154524046-5003eabf-858d-4c73-8023-e3a7bd0cd151.png)
+
+
+# check the files inside the folder before using docker-compose to start the containers
+
+
+![image](https://user-images.githubusercontent.com/80065996/154524618-9692d00d-554f-49d5-b377-4b39dbcf62e0.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/154525599-930aea0f-5d0e-4474-a28f-49df0e268101.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/154525679-0e0661d4-343e-4543-84db-a5e5dc1789dd.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/154525763-ff6c59ec-c7d7-48ff-8876-8c35e0050872.png)
+
+
+# you could notice network is created with the name of the folder our files are residing
+
+
+![image](https://user-images.githubusercontent.com/80065996/154526394-4e12e860-e23d-4994-a9b4-ef3baeda2aef.png)
+
+
+# first it took the dockerfile and building the node-app
+
+
+![image](https://user-images.githubusercontent.com/80065996/154526509-c3a68b4a-e34b-4042-9eba-291d66ce3033.png)
+
+
+# since its first time we are using docker-compose, it build the dockerfile and create the image out of it. if image is already present it wont do the build
+# image is tagged with folder name 'visits' followed by 'service name' (node-app) we mentioned in 'docker-compose' file
+
+
+![image](https://user-images.githubusercontent.com/80065996/154526758-9c9c68aa-1b01-4d9b-94c4-a76f448f2ea1.png)
+
+
+# next, it is pulling latest 'redis' image from dockerhub
+
+
+![image](https://user-images.githubusercontent.com/80065996/154527279-44fa10ff-f622-411c-8e71-6adabb9fae10.png)
+
+
+# creating 2 containers,
+
+
+![image](https://user-images.githubusercontent.com/80065996/154527690-4069bc85-5f90-4cd8-9baa-c1e9e566c4a0.png)
+
+
+# attaching containers created with the network created,
+
+
+![image](https://user-images.githubusercontent.com/80065996/154527902-f08c994d-ef28-4150-a16a-e3e22797ecfc.png)
+
+
+# details of containers created,
+
+
+![image](https://user-images.githubusercontent.com/80065996/154528181-047116ad-3c6f-4c45-8c67-9570e5c3d3a0.png)
+
+
+![image](https://user-images.githubusercontent.com/80065996/154528669-8e96611a-b383-42b2-bf3c-1dd4836aef43.png)
+
+
+# 'Docker-compose down' command to kill all the containers created using 'docker-compose up' command. Notice 'even network created to connect containers is removed'
+
+
+![image](https://user-images.githubusercontent.com/80065996/154528962-f415b990-4943-436a-9aec-679adfcc163c.png)
+
